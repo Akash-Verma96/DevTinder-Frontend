@@ -7,9 +7,10 @@ import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
     const [emailId, setEmailId] = useState("akash@gmail.com");
-    const [password, setPassowrd] = useState("Akash@123");
+    const [password, setPassword] = useState("Akash@123");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [error, setError] = useState("");
 
     const handleLogin = async () =>{
         try {
@@ -18,13 +19,14 @@ const Login = () => {
             {
                 emailId,
                 password,
-            },{withCredentials : true}
+            },
+            {withCredentials : true}
           );
           dispatch(addUser(res.data));
 
           return navigate("/");
         } catch (error) {
-            console.error(error);
+            setError(error?.response?.data);
         }
     }
 
@@ -48,11 +50,11 @@ const Login = () => {
               Password
             </label>
             <input
-              type="password"
+              type="text"
               className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
               placeholder="Enter password"
               value={password}
-              onChange={(e) => setPassowrd(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -65,7 +67,7 @@ const Login = () => {
               Forgot?
             </a>
           </div>
-
+          <p className="text-red-500 mb-3" >{error}</p>
           <button className="w-full bg-indigo-600 text-white py-2 rounded-lg font-medium hover:bg-indigo-700 transition cursor-pointer"  onClick={handleLogin} >
             Sign In
           </button>
