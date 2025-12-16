@@ -15,12 +15,13 @@ function App() {
       <Provider store={appStore}>
         <BrowserRouter basename="/">
           <Routes>
+            <Route path="/login" element={<Login />} />
+
             <Route path="/" element={<Body />}>
               <Route path="/" element={<Feed />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/Profile" element={<Profile />} />
-              <Route path="/Connections" element={<Connections />} />
-              <Route path="/Requests" element={<Requests />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/connections" element={<Connections />} />
+              <Route path="/requests" element={<Requests />} />
             </Route>
           </Routes>
         </BrowserRouter>

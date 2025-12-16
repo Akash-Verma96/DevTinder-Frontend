@@ -22,15 +22,16 @@ const Body = () => {
       dispatch(addUser(res.data));
     } catch (error) {
       if(error.response?.status === 401){
-        navigate("/login");
+        return navigate("/login");
       }
-      console.error(error);
+      console.error(error.response);
     }
   };
 
   useEffect(() => {
       fetchUser();
   }, []);
+
 
   return (
     <div>
