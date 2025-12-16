@@ -162,8 +162,7 @@ const EditProfile = ({ user }) => {
           <div className="absolute bottom-1 left-0 right-0 flex justify-center gap-6">
             <button
               className="bg-slate-900 p-1 text-2xl rounded-3xl shadow-lg hover:scale-105 transition hover:shadow-[0_0_25px_5px_rgba(59,130,246,0.9)]
-  hover:ring-2 
-  hover:ring-blue-400 hover:rotate-360"
+  hover:ring-2 hover:ring-blue-400 hover:rotate-360"
             >
               🧑‍💻
             </button>

@@ -1,7 +1,33 @@
-import React from "react";
+import React, { use } from "react";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { removeFeed } from "../utils/feedSlice";
+import axios from "axios";
 
-const Card = ({user}) => {
-  const { firstName, lastName, age, gender, photoUrl, skills, about } = user;
+const Card = ({ user }) => {
+  if (!user) return null;
+
+  const dispatch = useDispatch();
+
+  const handleFeed = async (status, _id) => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/request/send/" + status + "/" + _id,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(res.data.data);
+      dispatch(removeFeed(_id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const { _id, firstName, lastName, age, gender, photoUrl, skills, about } =
+    user;
 
   return (
     <div className=" h-150 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black">
@@ -28,23 +54,20 @@ const Card = ({user}) => {
         {/* Action Buttons */}
         <div className="absolute bottom-1 left-0 right-0 flex justify-center gap-6">
           <button
-            className="bg-slate-900 p-2 text-xl rounded-full shadow-lg hover:scale-105 transition hover:shadow-[0_0_25px_5px_rgba(59,130,246,0.9)]
-  hover:ring-2 
-  hover:ring-blue-400 hover:rotate-360"
+            onClick={() => handleFeed("ignored", _id)}
+            className="bg-slate-900 p-2 text-xl rounded-full shadow-lg hover:scale-105 transition hover:shadow-[0_0_25px_5px_rgba(59,130,246,0.9)] hover:ring-2 hover:ring-blue-400 hover:rotate-360"
           >
             ❌
           </button>
           <button
-            className="bg-slate-900 p-1 text-2xl rounded-3xl shadow-lg hover:scale-105 transition hover:shadow-[0_0_25px_5px_rgba(59,130,246,0.9)]
-  hover:ring-2 
-  hover:ring-blue-400 hover:rotate-360"
+            onClick={() => handleFeed("interested", _id)}
+            className="bg-slate-900 p-1 text-2xl rounded-3xl shadow-lg hover:scale-105 transition hover:shadow-[0_0_25px_5px_rgba(59,130,246,0.9)] hover:ring-2 hover:ring-blue-400 hover:rotate-360"
           >
             🧑‍💻
           </button>
         </div>
       </div>
     </div>
-
   );
 };
 

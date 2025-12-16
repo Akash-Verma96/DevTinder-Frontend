@@ -26,8 +26,14 @@ const Feed = () => {
     getFeed();
   }, []);
 
+  if(feed?.length === 0){
+    return (
+      <div className="text-center mt-20" >No More User Found !!</div>
+    )
+  }
+
   return (
-    feed && (
+    feed?.length > 0 && (
       <div>
         <Card user={feed[0]} />
       </div>
