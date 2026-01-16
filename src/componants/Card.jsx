@@ -30,8 +30,8 @@ const Card = ({ user }) => {
     user;
 
   return (
-    <div className=" h-150 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black">
-      <div className="relative w-[320px] h-[430px] rounded-2xl overflow-hidden shadow-xl bg-black">
+    <div className=" h-screen flex items-center justify-center bg-gradient-to-br from-gray-800 to-black">
+      <div className="absolute w-[320px] h-[430px] rounded-2xl overflow-hidden shadow-xl bg-black">
         {/* Image */}
         <img
           src={photoUrl}

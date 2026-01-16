@@ -56,7 +56,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full flex justify-center mt-10">
+    <div className="w-full flex justify-center mt-25">
       <div className="w-full max-w-sm  rounded-2xl  p-6 bg-black shadow-lg shadow-cyan-500/50 inset-shadow-sm inset-shadow-cyan-500 ...">
         <div className="text-center font-bold text-2xl mb-4">
           {isLogin ? "Login" : "Sign Up"}
